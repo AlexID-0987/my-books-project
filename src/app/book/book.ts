@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
+import { GetBook } from '../GetBook';
+import { Bookservice } from '../bookservice';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
   selector: 'app-book',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './book.html',
   styleUrl: './book.css',
 })
 export class Book {
-  users: any[] = [];
+  myLibrary$!: Observable<GetBook[]>;
 
-  constructor() {
-    fetch('https://localhost:44333/Book')
-      .then(response => response.json())
-      .then(data => {
-        this.users = data;
-        console.log(this.users);
-      })
-      .catch(error => console.error('Error fetching users:', error));
+  constructor(private bookService: Bookservice) {}
+   ngOnInit(): void {
+    this.myLibrary$ = this.bookService.getBooks();
   }
-   
 }

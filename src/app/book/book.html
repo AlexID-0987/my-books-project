@@ -1,1 +1,28 @@
 <h1>Book</h1>
+
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ID</th>
+      <th scope="col">TITLE</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of myLibrary$ | async; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ book.id }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.description }}</td>
+      <td>
+        <button class="btn btn-primary" >Edit</button>
+        <button class="btn btn-danger" >Delete</button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
